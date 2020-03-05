@@ -1,0 +1,45 @@
+<Hintergrund>:              #ScreenManager
+    canvas:
+        Color:
+            rgb: 1,0,0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    size_hint: None, None
+    size: 1920, 1080
+    Auswahlscreen:
+        name: '_auswahlscreen'
+        BoxLayout:
+            id: _filmstartbuttons
+            orientation: 'vertical'
+            size_hint: 0.25, 0.3
+            pos_hint: {'x': 0.25, 'y': 0.5}
+            Button:
+                on_press: root.start_movie(1)
+            Button:
+                on_press: root.start_movie(2)
+            Button:
+                on_press: root.start_movie(3)
+            Button:
+                on_press: root.stop_movie()
+    Abspielscreen:
+        name: '_abspielscreen'
+        BoxLayout:
+            id: _abspielfenster
+            orientation: 'vertical'
+            size_hint: None, None
+            height: _videofenster.height + _videoUnterzeile.height
+            width: 1280
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
+            Video:
+                id: _videofenster
+                size_hint: None, None
+                size: 1280, 720
+            BoxLayout:
+                id: _videoUnterzeile
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 100
+                Button:
+                    on_press: _videofenster.state = 'stop'
+                Button:
